@@ -1,42 +1,48 @@
 <!DOCTYPE html>
 
 <html lang="en">
+
 <head>
-    
+
     <title>HODL dApp</title>
 
     <style>
-body {
-    background-color:rgb(218, 201, 154);
-    padding: 2em;
-    font-family: 'Arial';
-}
-.container {
-    width: 50%;
-    margin: 0 auto;
-}
-label {
-    display:block;
-    margin-bottom:10px;
-}
-input {
-    padding:10px;
-    width: 50%;
-    margin-bottom: 1em;
-}
-button {
-    margin: 2em 0;
-    padding: 1em 4em;
-    display: block;
-}
-</style>
+        body {
+            background-color: rgb(218, 201, 154);
+            padding: 2em;
+            font-family: 'Arial';
+        }
+
+        .container {
+            width: 50%;
+            margin: 0 auto;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        input {
+            padding: 10px;
+            width: 50%;
+            margin-bottom: 1em;
+        }
+
+        button {
+            margin: 2em 0;
+            padding: 1em 4em;
+            display: block;
+        }
+    </style>
 
 </head>
+
 <body>
     <div class="container">
 
         <h1>Deposite um valor ou retire fundos previamente depositados.</h1>
-  
+
         <label for="deposito" class="col-lg-2 control-label">Valor:</label>
         <input id="valor" type="number" min="0" step="0.1">
         <button id="button1">Depositar investimento</button>
@@ -49,58 +55,58 @@ button {
     </div>
 
 
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
-<script src="http://rawgit.com/ethereum/web3.js/0.16.0/dist/web3.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="http://rawgit.com/ethereum/web3.js/0.16.0/dist/web3.min.js"></script>
 
 
     <script>
-               if (typeof web3 !== 'undefined') {
+        if (typeof web3 !== 'undefined') {
             web3 = new Web3(web3.currentProvider);
         } else {
             web3 = new Web3(new Web3.providers.HttpProvider("http://127.https://ropsten.infura.io/v3/d81a3501521247ce9a510f4e8317219b0.0.1:8545"));
         }
-		var account = web3.eth.accounts[0];
-		var accountInterval = setInterval(function() {
-			var accountInterval = setInterval(function() {
-              if (web3.eth.accounts[0] !== account) {
-                account = web3.eth.accounts[0];
-                document.getElementById("address").innerHTML = account;
-              }
+        var account = web3.eth.accounts[0];
+        var accountInterval = setInterval(function () {
+            var accountInterval = setInterval(function () {
+                if (web3.eth.accounts[0] !== account) {
+                    account = web3.eth.accounts[0];
+                    document.getElementById("address").innerHTML = account;
+                }
             }, 100);
         });
-       
-       var HodlContract = web3.eth.contract(SUA ABI AQUI);
-       window.alert('Sua mensagem aqui.');
-       var Hodl = HodlContract.at('ENDEREÇO DO CONTRATO AQUI');
-		   console.log(Hodl);
-		   address =  account
-		
-    
-$("#button1").click(function(web3) {
-var tx = Hodl.depositarInvestimento({ 
-  from: address,
-  gas: "3000000",
-  to: "ENDEREÇO DO CONTRATO AQUI",
-  value: 1000000000000000000*($("#valor")[0].value),
-  data: ""
- }, function(err, transactionHash) {
-  if (!err)
-    console.log(transactionHash); 
-})
-})
 
-  $("#button2").click(function(web3) {
-var tx = Hodl.retirarInvestimento("\"" + $("#senha")[0].value + "\"", { 
-  from: address,
-  gas: "3000000",
-  to: "ENDEREÇO DO CONTRATO AQUI",
-  value: "0",
-  data: ""
- }, function(err, transactionHash) {
-  if (!err)
-    console.log(transactionHash); 
-})
-})
+        var HodlContract = web3.eth.contract(SUA ABI AQUI);
+        window.alert('Sua mensagem aqui.');
+        var Hodl = HodlContract.at('ENDEREÇO DO CONTRATO AQUI');
+        console.log(Hodl);
+        address = account
+
+
+        $("#button1").click(function (web3) {
+            var tx = Hodl.depositarInvestimento({
+                from: address,
+                gas: "3000000",
+                to: "ENDEREÇO DO CONTRATO AQUI",
+                value: 1000000000000000000 * ($("#valor")[0].value),
+                data: ""
+            }, function (err, transactionHash) {
+                if (!err)
+                    console.log(transactionHash);
+            })
+        })
+
+        $("#button2").click(function (web3) {
+            var tx = Hodl.retirarInvestimento("\"" + $("#senha")[0].value + "\"", {
+                from: address,
+                gas: "3000000",
+                to: "ENDEREÇO DO CONTRATO AQUI",
+                value: "0",
+                data: ""
+            }, function (err, transactionHash) {
+                if (!err)
+                    console.log(transactionHash);
+            })
+        })
 
     </script>
 
